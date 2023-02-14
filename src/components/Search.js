@@ -13,7 +13,7 @@ const Search = () => {
   };
 
   return(
-    <section className="h-[30vh]">
+    <section className="h-[70vh]">
       <div className="pt-28">
         <h1 className="font-bold text-2xl text-center">Are you looking for something?</h1>
         <h2 className="font-bold text-xl text-center"><SiSnapcraft size={20} style={{display: 'inline'}} /> Just search</h2>

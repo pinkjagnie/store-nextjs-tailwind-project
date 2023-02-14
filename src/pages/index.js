@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 
-import Search from '@/components/Search'
+import Search from '@/components/Search';
+import Products from '@/components/Products';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,6 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Search />
+      <Products />
     </>
   )
 }
