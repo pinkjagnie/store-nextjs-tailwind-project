@@ -5,7 +5,7 @@ import { productsData } from "@/assets/index";
 
 const Products = () => {
   return(
-    <section id="products" className="max-w-[1240px] mx-auto pb-12 text-center">
+    <section id="products" className="max-w-[1240px] mx-auto pb-12">
       <h1 className="font-bold text-2xl text-center pb-8">Our latest products</h1>
       
       <div className="grid gap-4 grid-cols-3 grid-rows-2">
