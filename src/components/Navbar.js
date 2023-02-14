@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return(
-    <section className='fixed left-0 top-0 w-full z-20 ease-in duration-300'>
+    <section className='fixed left-0 top-0 w-full z-20 ease-in duration-300 bg-[whitesmoke]'>
       <div className="flex p-4 pl-10">
         <div onClick={openNavHandler} className='cursor-pointer z-10'>
           {openNav ? <AiOutlineClose size={30} style={{color: 'whitesmoke'}}/> : <AiOutlineMenu size={30}/>}
