@@ -17,6 +17,7 @@ const AdminPage = () => {
     <section className="pt-20">
       <h1 className="text-center font-bold text-2xl">Admin Page</h1>
      
+      {/* Login */}
       {!isLogged && <div className="pt-20">
         <button type="button" className="block mx-auto py-4 px-6 bg-gray-gradient font-medium text-[18px] text-[whitesmoke] outline-none rounded-[10px]" onClick={adminLoginHandler}>Login</button>
       </div>}
