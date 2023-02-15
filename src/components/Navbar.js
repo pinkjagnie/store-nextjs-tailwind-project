@@ -18,6 +18,9 @@ const Navbar = () => {
           {openNav ? <AiOutlineClose size={30} style={{color: 'whitesmoke'}}/> : <AiOutlineMenu size={30}/>}
         </div>
         <Link href='/'><h1 className='pl-10 font-bold text-4xl text-fuchsia-600'>Crafty Shop</h1></Link>
+        <div className="flex justify-end w-[60vw]">
+          <Link href='/admin'><h1 className='pt-2 font-bold text-sm text-gray-800'>Admin</h1></Link>
+        </div>
       </div>
 
       {/* Menu */}
