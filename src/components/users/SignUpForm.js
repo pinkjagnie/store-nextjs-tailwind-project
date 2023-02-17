@@ -1,18 +1,17 @@
-import React, { useRef, useState } from "react";
-
+import React, { useRef } from "react";
 import { useRouter } from 'next/router';
-
 
 const SignUpForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  const router = useRouter();
+  // const router = useRouter();
 
   async function submitHandler(event) {
     event.preventDefault();
 
-    console.log("idzie fetch")
+    console.log(emailInputRef.current.value);
+    console.log(passwordInputRef.current.value)
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
@@ -20,7 +19,7 @@ const SignUpForm = () => {
     console.log(enteredEmail);
     console.log(enteredPassword);
 
-    if (!enteredEmail || !enteredEmail.includes('@') || !enteredPassword || enteredPassword.length < 7) {
+    if (!enteredEmail || enteredEmail.trim() === '' || !enteredEmail.includes('@') || !enteredPassword || enteredPassword.trim() === '' || enteredPassword.trim().length < 7) {
       alert('Invalid details');
       return;
     }
@@ -38,6 +37,9 @@ const SignUpForm = () => {
 
     const data = await res.json();
     console.log(data);
+
+    emailInputRef.current.value = "";
+    passwordInputRef.current.value = ";"
   };
 
   return(
