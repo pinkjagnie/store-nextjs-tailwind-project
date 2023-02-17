@@ -1,12 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 // import { useRouter } from 'next/router';
 
 import { useForm } from "react-hook-form";
 
 const SignUpForm = () => {
-  // const emailInputRef = useRef();
-  // const passwordInputRef = useRef();
-
   // const router = useRouter();
 
   const { register, handleSubmit, reset, formState: { errors, isDirty, isValid } } = useForm({
@@ -17,50 +14,27 @@ const SignUpForm = () => {
   });
 
   async function onSubmit(data) {
-    // event.preventDefault();
-
     const enteredEmail = data.email;
     const enteredPassword = data.password;
 
     console.log(enteredEmail)
     console.log(enteredPassword)
 
-    data.email = "";
-    data.password = ""
-
     reset()
     
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+      }),
+    });
 
-    // console.log(emailInputRef.current.value);
-    // console.log(passwordInputRef.current.value)
-
-    // const enteredEmail = emailInputRef.current.value;
-    // const enteredPassword = passwordInputRef.current.value;
-
-    // console.log(enteredEmail);
-    // console.log(enteredPassword);
-
-    // if (!enteredEmail || enteredEmail.trim() === '' || !enteredEmail.includes('@') || !enteredPassword || enteredPassword.trim() === '' || enteredPassword.trim().length < 7) {
-    //   alert('Invalid details');
-    //   return;
-    // }
-
-    // const res = await fetch('/api/auth/signup', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     email: enteredEmail,
-    //     password: enteredPassword,
-    //   }),
-    // });
-
-    // const data = await res.json();
-    // console.log(data);
-
-    // emailInputRef.current.value = "";
-    // passwordInputRef.current.value = ";"
+    const response = await res.json();
+    console.log(response);
   };
 
   return(
