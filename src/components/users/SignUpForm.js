@@ -48,6 +48,9 @@ const SignUpForm = () => {
           <input type='email' id='email' {...register("email", { required: {
             value: true,
             message: 'This field is required'
+          }, pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+            message: "Please enter a valid email"
           } })} />
           {errors.email && <p className="text-red-600">{errors.email.message}</p>}
         </div>
