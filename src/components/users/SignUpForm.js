@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 // import { useRouter } from 'next/router';
 
 import { useForm } from "react-hook-form";
 
 const SignUpForm = () => {
+  const [isCreated, setIsCreated] = useState(false);
+  const [msgCreated, setMsgCreated] = useState("");
+
   // const router = useRouter();
 
   const { register, handleSubmit, reset, formState: { errors, isDirty, isValid } } = useForm({
@@ -33,12 +36,18 @@ const SignUpForm = () => {
       }),
     });
 
+    setIsCreated(true);
+
     const response = await res.json();
     console.log(response);
+
+    setMsgCreated(response.message)
   };
 
   return(
     <div>
+
+      {isCreated && <div className="text-bold text-xl text-red-600 pb-10">{msgCreated}</div>}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <p className="pb-4">Sing Up Form</p>
