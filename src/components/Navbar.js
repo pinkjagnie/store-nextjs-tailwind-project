@@ -19,6 +19,7 @@ const Navbar = () => {
         </div>
         <Link href='/'><h1 className='pl-10 font-bold text-4xl text-fuchsia-600'>Crafty Shop</h1></Link>
         <div className="flex justify-end w-[60vw]">
+          <Link href='/profile'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Profile</h1></Link>
           <Link href='/login'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Login</h1></Link>
           <Link href='/signup'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Sign Up</h1></Link>
           <Link href='/admin'><h1 className='pt-2 font-bold text-sm text-gray-800'>Admin</h1></Link>
