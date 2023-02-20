@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -6,6 +6,9 @@ import { signIn } from 'next-auth/react'
 import { useForm } from "react-hook-form";
 
 const LoginForm = () => {
+  const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
   const router = useRouter();
 
   const { register, handleSubmit, reset, formState: { errors, isDirty, isValid } } = useForm({
@@ -33,12 +36,18 @@ const LoginForm = () => {
     if (!result.error) {
       // set some auth state
       router.replace('/');
+    } else {
+      setIsError(true);
+      setErrorMsg(result.error);
+      console.log(result.error)
     }
 
   }
 
   return(
     <div>
+
+      {isError && <div className="text-bold text-xl text-red-600 pb-10">{errorMsg}</div>}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <p className="pb-4">Login Form</p>
