@@ -31,15 +31,6 @@ async function handler(req, res) {
     return;
   }
 
-  const insertedPasswordsAreEqual = await verifyInsertedPassword(oldPassword, newPassword)
-
-  if (insertedPasswordsAreEqual) {
-    console.log('takie same hasła')
-    res.status(403).json({ message: 'Inserted passwords are equal' });
-    client.close();
-    return;
-  }
-
   const currentPassword = user.password;
 
   const passwordsAreEqual = await verifyPassword(oldPassword, currentPassword);
@@ -50,7 +41,14 @@ async function handler(req, res) {
     return;
   }
 
-  
+  const insertedPasswordsAreEqual = await verifyInsertedPassword(newPassword, currentPassword)
+
+  if (insertedPasswordsAreEqual) {
+    console.log('takie same hasła')
+    res.status(403).json({ message: 'Inserted passwords are equal' });
+    client.close();
+    return;
+  }
 
   const hashedPassword = await hashPassword(newPassword);
 
