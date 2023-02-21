@@ -36,6 +36,11 @@ export default NextAuth({
           throw new Error('Could not log you in!');
         }
 
+        if (!user.active) {
+          client.close();
+          throw new Error('Inactive user!')
+        }
+
         client.close();
         return { email: user.email };
       },
