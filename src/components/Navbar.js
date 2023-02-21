@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
 const Navbar = () => {
@@ -15,6 +15,10 @@ const Navbar = () => {
     console.log(openNav)
   };
 
+  const logoutHandler = () => {
+    signOut();
+  };
+
   return(
     <section className='fixed left-0 top-0 w-full z-20 ease-in duration-300 bg-[whitesmoke]'>
       <div className="flex p-4 pl-10">
@@ -25,6 +29,7 @@ const Navbar = () => {
         <div className="flex justify-end w-[60vw]">
           {session && <Link href='/profile'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Profile</h1></Link>}
           {!session && !loading && <Link href='/login'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Login</h1></Link>}
+          {session && <h1 className='pt-2 pr-8 font-bold text-sm text-gray-800 cursor-pointer' onClick={logoutHandler}>Logout</h1>}
           {!session && !loading && <Link href='/signup'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Sign Up</h1></Link>}
           <Link href='/admin'><h1 className='pt-2 font-bold text-sm text-gray-800'>Admin</h1></Link>
         </div>
