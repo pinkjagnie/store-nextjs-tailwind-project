@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
+import { useSession } from 'next-auth/react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
 const Navbar = () => {
   const [openNav, setOpenNav] = useState(false);
+
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
   const openNavHandler = () => {
     setOpenNav((current) => !current);
@@ -19,9 +23,9 @@ const Navbar = () => {
         </div>
         <Link href='/'><h1 className='pl-10 font-bold text-4xl text-fuchsia-600'>Crafty Shop</h1></Link>
         <div className="flex justify-end w-[60vw]">
-          <Link href='/profile'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Profile</h1></Link>
-          <Link href='/login'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Login</h1></Link>
-          <Link href='/signup'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Sign Up</h1></Link>
+          {session && <Link href='/profile'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Profile</h1></Link>}
+          {!session && !loading && <Link href='/login'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Login</h1></Link>}
+          {!session && !loading && <Link href='/signup'><h1 className='pt-2 pr-8 font-bold text-sm text-gray-800'>Sign Up</h1></Link>}
           <Link href='/admin'><h1 className='pt-2 font-bold text-sm text-gray-800'>Admin</h1></Link>
         </div>
       </div>
